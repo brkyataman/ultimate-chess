@@ -1,0 +1,71 @@
+﻿<html ng-app="chessApp">
+
+<style>
+    .board{
+        border: solid;
+        height: 592px;
+        width: 592px;
+    }
+    .square {
+        float: left;
+        width: 74px;
+        height: 74px;
+    }
+    .black-square {
+        background-color: #6b3333;
+    }
+    .white-square {
+        background-color: white;
+    }
+</style>
+<head>
+    <title>Ultimate Chess</title>
+    <script src="/Scripts/angular.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="ChessController">
+    <div>HELLO 1</div>
+    <div>
+        <h1>{{greet}}</h1>   
+    </div>
+
+    <div class="board">
+        <div ng-repeat="row in rows" >
+                <div class="{{col.color}}" ng-src="../image/b-king.png" ng-repeat="col in row">{{col.x}},{{col.y}}</div>
+        </div>
+    </div>
+
+    <!--<ul ng-style ="{'list-style-type':'none'}">
+        <li ng-repeat="row in rows" ng-style="{'float':'left'}" >
+            <ul ng-style="{'list-style-type':'none'}">
+                <li class="{{col.color}}" ng-style="{'width':'74px','height':'74px','float':'left'}" ng-repeat="col in row">{{col.x}},{{col.y}}</li>
+            </ul>
+        </li>
+    </ul>-->
+
+    <!--<div class="board">
+        
+        <div class="row">
+            <div class="square white-square"><div>3</div></div>
+            <div class="square black-square"></div>
+            <div class="square white-square"></div>
+            <div class="square black-square"></div>
+            <div class="square white-square"></div>
+            <div class="square black-square"></div>
+            <div class="square white-square"></div>
+            <div class="square black-square"></div>
+        </div>
+        <div class="row">
+            <div class="square black-square"></div>
+            <div class="square white-square"></div>
+            <div class="square black-square"></div>
+            <div class="square white-square"></div>
+            <div class="square black-square"></div>
+            <div class="square white-square"></div>
+            <div class="square black-square"></div>
+            <div class="square white-square"></div>
+        </div>
+    </div>-->
+</body>
+</html>

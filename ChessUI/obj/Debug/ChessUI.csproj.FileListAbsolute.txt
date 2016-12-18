@@ -1,0 +1,6 @@
+C:\Users\Berkay\Documents\Visual Studio 2013\Projects\UltimateChess\ChessUI\bin\ChessUI.dll.config
+C:\Users\Berkay\Documents\Visual Studio 2013\Projects\UltimateChess\ChessUI\bin\ChessUI.dll
+C:\Users\Berkay\Documents\Visual Studio 2013\Projects\UltimateChess\ChessUI\bin\ChessUI.pdb
+C:\Users\Berkay\Documents\Visual Studio 2013\Projects\UltimateChess\ChessUI\obj\Debug\ChessUI.dll
+C:\Users\Berkay\Documents\Visual Studio 2013\Projects\UltimateChess\ChessUI\obj\Debug\ChessUI.pdb
+C:\Users\Berkay\Documents\Visual Studio 2013\Projects\UltimateChess\ChessUI\obj\Debug\ChessUI.csprojResolveAssemblyReference.cache
