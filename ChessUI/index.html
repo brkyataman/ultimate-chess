@@ -1,15 +1,35 @@
-﻿<html ng-app="chessApp">
+﻿<!--<link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
+<script src="/Scripts/angular/angular.js"></script>
+<script src="/Scripts/angular-animate/angular-animate.js"></script>
+<script src="/Scripts/angular-aria/angular-aria.js"></script>
+<script src="/Scripts/angular-messages.js"></script>
+<script src="/Scripts/angular-material/angular-material.js"></script>-->
+
+<html ng-app="chessApp">
 
 <style>
     .board{
         border: solid;
-        height: 592px;
-        width: 592px;
+        height: 400px;
+        width: 453px;
     }
     .square {
         float: left;
-        width: 74px;
-        height: 74px;
+        width: 50px;
+        height: 50px;
+    }
+    .index{
+        float:left;
+        width:50px;
+        height:50px;
+        font-size:30px;
+        text-align: center;
+    }
+    .index-l{
+        border-right: solid;
+    }
+    .index-b{
+        
     }
     .black-square {
         background-color: #6b3333;
@@ -25,47 +45,141 @@
 </head>
 
 <body ng-controller="ChessController">
-    <div>HELLO 1</div>
+ 
     <div>
-        <h1>{{greet}}</h1>   
+        <h1>{{turnColor}} turn!</h1>   
     </div>
 
-    <div class="board">
-        <div ng-repeat="row in rows" >
-                <div class="{{col.color}}" ng-src="../image/b-king.png" ng-repeat="col in row">{{col.x}},{{col.y}}</div>
+    <div>
+        <label>From: </label>
+        <input type="text" ng-model="fromMove"/>
+    </div>
+    
+    <div>
+        <label>To: </label>
+        <input type="text" ng-model="toMove" />
+    </div>
+    <div>
+        <label>Move ID: </label>
+        <input type="text" ng-model="moveId" />
+    </div>
+        <button ng-click="playMove()">CLICK</button>
+    <md-button class="md-raised" ng-click="generateMove('a2','a4')">LOL</md-button>
+    
+    <div>
+        <div class="board">
+            <div class="row">
+                <div class="index index-l">8</div>
+                <div class="square white-square"><img src="" id="a8" /></div>
+                <div class="square black-square"><img src="" id="b8" /></div>
+                <div class="square white-square"><img src="" id="c8" /></div>
+                <div class="square black-square"><img src="" id="d8" /></div>
+                <div class="square white-square"><img src="" id="e8" /></div>
+                <div class="square black-square"><img src="" id="f8" /></div>
+                <div class="square white-square"><img src="" id="g8" /></div>
+                <div class="square black-square"><img src="" id="h8" /></div>
+            </div>
+            <div class="row">
+                <div class="index index-l">7</div>
+                <div class="square black-square"><img src="" id="a7" /></div>
+                <div class="square white-square"><img src="" id="b7" /></div>
+                <div class="square black-square"><img src="" id="c7" /></div>
+                <div class="square white-square"><img src="" id="d7" /></div>
+                <div class="square black-square"><img src="" id="e7" /></div>
+                <div class="square white-square"><img src="" id="f7" /></div>
+                <div class="square black-square"><img src="" id="g7" /></div>
+                <div class="square white-square"><img src="" id="h7" /></div>
+            </div>
+
+            <div class="row">
+                <div class="index index-l">6</div>
+                <div class="square white-square"><img src="" id="a6" /></div>
+                <div class="square black-square"><img src="" id="b6" /></div>
+                <div class="square white-square"><img src="" id="c6" /></div>
+                <div class="square black-square"><img src="" id="d6" /></div>
+                <div class="square white-square"><img src="" id="e6" /></div>
+                <div class="square black-square"><img src="" id="f6" /></div>
+                <div class="square white-square"><img src="" id="g6" /></div>
+                <div class="square black-square"><img src="" id="h6" /></div>
+            </div>
+            <div class="row">
+                <div class="index index-l">5</div>
+                <div class="square black-square"><img src="" id="a5" /></div>
+                <div class="square white-square"><img src="" id="b5" /></div>
+                <div class="square black-square"><img src="" id="c5" /></div>
+                <div class="square white-square"><img src="" id="d5" /></div>
+                <div class="square black-square"><img src="" id="e5" /></div>
+                <div class="square white-square"><img src="" id="f5" /></div>
+                <div class="square black-square"><img src="" id="g5" /></div>
+                <div class="square white-square"><img src="" id="h5" /></div>
+            </div>
+
+            <div class="row">
+                <div class="index index-l">4</div>
+                <div class="square white-square"><img src="" id="a4" /></div>
+                <div class="square black-square"><img src="" id="b4" /></div>
+                <div class="square white-square"><img src="" id="c4" /></div>
+                <div class="square black-square"><img src="" id="d4" /></div>
+                <div class="square white-square"><img src="" id="e4" /></div>
+                <div class="square black-square"><img src="" id="f4" /></div>
+                <div class="square white-square"><img src="" id="g4" /></div>
+                <div class="square black-square"><img src="" id="h4" /></div>
+            </div>
+            <div class="row">
+                <div class="index index-l">3</div>
+                <div class="square black-square"><img src="" id="a3" /></div>
+                <div class="square white-square"><img src="" id="b3" /></div>
+                <div class="square black-square"><img src="" id="c3" /></div>
+                <div class="square white-square"><img src="" id="d3" /></div>
+                <div class="square black-square"><img src="" id="e3" /></div>
+                <div class="square white-square"><img src="" id="f3" /></div>
+                <div class="square black-square"><img src="" id="g3" /></div>
+                <div class="square white-square"><img src="" id="h3" /></div>
+            </div>
+
+            <div class="row">
+                <div class="index index-l">2</div>
+                <div class="square white-square"><img src="" id="a2" /></div>
+                <div class="square black-square"><img src="" id="b2" /></div>
+                <div class="square white-square"><img src="" id="c2" /></div>
+                <div class="square black-square"><img src="" id="d2" /></div>
+                <div class="square white-square"><img src="" id="e2" /></div>
+                <div class="square black-square"><img src="" id="f2" /></div>
+                <div class="square white-square"><img src="" id="g2" /></div>
+                <div class="square black-square"><img src="" id="h2" /></div>
+            </div>
+            <div class="row">
+                <div class="index index-l">1</div>
+                <div class="square black-square"><img src="" id="a1" /></div>
+                <div class="square white-square"><img src="" id="b1" /></div>
+                <div class="square black-square"><img src="" id="c1" /></div>
+                <div class="square white-square"><img src="" id="d1" /></div>
+                <div class="square black-square"><img src="" id="e1" /></div>
+                <div class="square white-square"><img src="" id="f1" /></div>
+                <div class="square black-square"><img src="" id="g1" /></div>
+                <div class="square white-square"><img src="" id="h1" /></div>
+            </div>
+            <div class="row">
+                <div class="index"></div>
+                <div class="index index-b">a</div>
+                <div class="index index-b">b</div>
+                <div class="index index-b">c</div>
+                <div class="index index-b">d</div>
+                <div class="index index-b">e</div>
+                <div class="index index-b">f</div>
+                <div class="index index-b">g</div>
+                <div class="index index-b">h</div>
+            </div>
         </div>
-    </div>
-
-    <!--<ul ng-style ="{'list-style-type':'none'}">
-        <li ng-repeat="row in rows" ng-style="{'float':'left'}" >
-            <ul ng-style="{'list-style-type':'none'}">
-                <li class="{{col.color}}" ng-style="{'width':'74px','height':'74px','float':'left'}" ng-repeat="col in row">{{col.x}},{{col.y}}</li>
-            </ul>
-        </li>
-    </ul>-->
-
-    <!--<div class="board">
         
-        <div class="row">
-            <div class="square white-square"><div>3</div></div>
-            <div class="square black-square"></div>
-            <div class="square white-square"></div>
-            <div class="square black-square"></div>
-            <div class="square white-square"></div>
-            <div class="square black-square"></div>
-            <div class="square white-square"></div>
-            <div class="square black-square"></div>
-        </div>
-        <div class="row">
-            <div class="square black-square"></div>
-            <div class="square white-square"></div>
-            <div class="square black-square"></div>
-            <div class="square white-square"></div>
-            <div class="square black-square"></div>
-            <div class="square white-square"></div>
-            <div class="square black-square"></div>
-            <div class="square white-square"></div>
-        </div>
-    </div>-->
+    </div>
+    <div>
+        <button ng-click="start()">START</button>
+    </div>
+    <div ng-if="playableMoves.length > 0">
+        <ul ng-style="{'list-style-type':'decimal'}">
+            <li ng-repeat="m in playableMoves">{{m.from}} to {{m.to}}</li>
+        </ul>
+    </div>
 </body>
 </html>

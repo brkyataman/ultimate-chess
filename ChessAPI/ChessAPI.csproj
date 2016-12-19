@@ -137,6 +137,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoveController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Engine\Game.cs" />
     <Compile Include="Engine\Information.cs" />
     <Compile Include="Engine\Move.cs" />
     <Compile Include="Engine\Node.cs" />

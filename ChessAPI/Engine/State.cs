@@ -157,7 +157,7 @@ namespace ChessAPI.Engine
             if (move.msg == 'R')
             {
 
-                if (move.to_y > 0) //Right castling
+                if (move.to_y > 4) //Right castling //daha önce 4 değil 0'dı fakat hata almıştım.
                 {
                     board[move.to_x, move.to_y - 1].occupiedBy = board[move.to_x, move.to_y + 1].occupiedBy;
                     board[move.to_x, move.to_y - 1].occupiedBy.UpdateData(move.to_x, move.to_y - 1);
