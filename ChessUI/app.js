@@ -35,10 +35,20 @@ app.controller('ChessController', ['$scope','$http', '$q', function ($scope, $ht
         $scope.rows.push(row);
     }
 
-    $scope.generateMove = function (from, to) {
+    $scope.generateMove = function (from, to, msg) {
         document.getElementById(to).src = document.getElementById(from).src;
         document.getElementById(from).src = "";
 
+        if (msg == 'R') {
+            if (to[0] == 'g') {
+                document.getElementById('f' + to[1]).src = document.getElementById('h' + from[1]).src;
+                document.getElementById('h' + from[1]).src = "";
+            }
+            else if (to[0] == 'c') {
+                document.getElementById('d' + to[1]).src = document.getElementById('a' + from[1]).src;
+                document.getElementById('a' + from[1]).src = "";
+            }
+        }
     }
   
     $scope.init = function () {
@@ -106,18 +116,19 @@ app.controller('ChessController', ['$scope','$http', '$q', function ($scope, $ht
     $scope.playMove = function () {
         var move = JSON.stringify($scope.moveId-1);
         var s = $scope.playableMoves[$scope.moveId-1];
-        $scope.generateMove(s.from, s.to);
+        $scope.generateMove(s.from, s.to, s.msg);
         var req = {
             method: 'POST',
             url: '../api/move',
             headers: { 'Content-Type': 'application/json' },
             data: move
         }
+        $scope.turnColor = 'Black';
         $http(req).then(function (data) {
             $scope.ai_move = data.data;
             var from = charSet.charAt(data.data[0].from_y) + (data.data[0].from_x + 1);
             var to = charSet.charAt(data.data[0].to_y) + (data.data[0].to_x + 1);
-            $scope.generateMove(from, to);
+            $scope.generateMove(from, to, data.data[0].msg);
 
             //Get playable moves
             var req = {
@@ -129,10 +140,12 @@ app.controller('ChessController', ['$scope','$http', '$q', function ($scope, $ht
                 for (var i = 0; i < data.data.length; i++) {
                     var m = {
                         from: charSet.charAt(data.data[i].from_y) + (data.data[i].from_x + 1),
-                        to: charSet.charAt(data.data[i].to_y) + (data.data[i].to_x + 1)
+                        to: charSet.charAt(data.data[i].to_y) + (data.data[i].to_x + 1),
+                        msg: data.data[i].msg
                     }
                     $scope.playableMoves.push(m);
                 }
+                $scope.turnColor = 'White';
             });
         });
     }
